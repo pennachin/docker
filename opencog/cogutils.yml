@@ -1,0 +1,29 @@
+utils:
+    image: opencog/cogutils
+    ports: # syntax is host:container
+        - "5000:5000"
+        - "17001:17001"
+        - "18001:18001"
+        - "8080:8080"
+    volumes:
+        - $OPENCOG_SOURCE_DIR:/opencog
+        - $ATOMSPACE_SOURCE_DIR:/atomspace
+        - $COGUTILS_SOURCE_DIR:/cogutils
+        - $HOME/.gitconfig:/home/opencog/.gitconfig # for git commits,stash ...
+        - $HOME/.guile:/home/opencog/.guile
+        - $HOME/.bashrc:/home/opencog/.bashrc
+        - $CCACHE_DIR:/home/opencog/.ccache # for persisting ccache artifacts
+    environment: # Set environment variables within the container
+        - PYTHONPATH=/usr/local/share/opencog/python:/opencog/opencog/python/:/opencog/build/opencog/cython:/opencog/opencog/nlp/anaphora
+        - OPENCOG_SOURCE_DIR=/opencog
+        - PGHOST=db # This should be the same as the link's alias
+        - PGUSER=opencog_user # user created by configure-database.sh
+    command: bash
+    working_dir: /atomspace 
+    links:
+        - postgres:db
+
+postgres:
+    image: opencog/postgres
+    volumes_from:
+        - dbdata
