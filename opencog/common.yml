@@ -13,7 +13,9 @@ workspace:
     volumes:
         - $OPENCOG_SOURCE_DIR:/opencog
         - $HOME/.gitconfig:/home/opencog/.gitconfig # for git commits,stash ...
-        - /etc/localtime:/etc/localtime:ro # for syncing with host time.
+        - $HOME/.guile:/home/opencog/.guile
+        - $HOME/.bashrc:/home/opencog/.bashrc
+        # - /etc/localtime:/etc/localtime:ro # for syncing with host time.
         - $CCACHE_DIR:/home/opencog/.ccache # for persisting ccache artifacts
     environment: # Set environment variables within the container
         - PYTHONPATH=/usr/local/share/opencog/python:/opencog/opencog/python/:/opencog/build/opencog/cython:/opencog/opencog/nlp/anaphora

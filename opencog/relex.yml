@@ -10,5 +10,5 @@ relex:
     volumes:
         - $RELEX_SOURCE_DIR:/relex
         - $HOME/.gitconfig:/home/opencog/.gitconfig # for git commits,stash ...
-        - /etc/localtime:/etc/localtime:ro # for syncing with host time.
+        # - /etc/localtime:/etc/localtime:ro # for syncing with host time.
     command: bash
