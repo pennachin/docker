@@ -16,6 +16,8 @@ dev:
 
 postgres:
     image: opencog/postgres
+    volumes_from:
+        - dbdata
 
 relex:
     image: opencog/relex
